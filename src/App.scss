@@ -1,5 +1,14 @@
+@use 'sass:map';
 @import './styles/variables.scss';
 @import './styles/mixins.scss';
+@import './styles/functions.scss';
+
+
+.App {
+    display: flex;
+    flex-direction: column;
+}
+
 
 nav {
     ul {
@@ -28,10 +37,172 @@ nav {
                 text-decoration: none;
 
                 img {
-                    min-width: 100px;
-                    max-width: 200px;
+                    min-width: calculate-rem(100px);
+                    max-width: calculate-rem(200px);
                 }
             }
         }
     }
 }
+
+header {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: map.get($colors, 'primary-green');
+    justify-content: center;
+    align-items: center;
+    padding: 0 calculate-rem(50px);
+
+    h1 {
+        @include title();
+        margin-bottom: 0;
+        color: map.get($colors, 'primary-yellow')
+    }
+
+    h3 {
+        @include subTitle();
+        color: white;
+    }
+
+    p {
+        max-width: 65ch;
+        color: white;
+    }
+
+    section {
+        max-width: calculate-rem(500px);
+        min-width: calculate-rem(499px);
+        max-height: calculate-rem(400px);
+        min-height: calculate-rem(400px);
+
+        div {
+            position: relative;
+            overflow: hidden;
+            margin-top: calculate-rem(30px);
+            height: calculate-rem(450px);
+            border-radius: $border-radius;
+
+            img {
+                position: absolute;
+                top: calculate-rem(-170px);
+                right: 0;
+                width: 100%;
+            }
+        }
+
+        button {
+            @include primaryButton();
+            margin-bottom: calculate-rem(20px);
+        }
+    }
+}
+
+main {
+    margin-top: calculate-rem(150px);
+
+    #highlights-section {
+        padding: 0 10%;
+
+        div.first-row{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: calculate-rem(30px);
+
+            h2{
+                @include sectionTitle();
+            }
+
+            button {
+                @include primaryButton();
+            }
+        }
+
+        .grid-card{
+            display: grid;
+            gap: calculate-rem(30px);
+
+            @media screen and (max-width: #{map-get($media-breakpoint, 'mobile')}) {
+                grid-template-columns: 1fr;
+            }
+
+            @media screen and (min-width: #{map-get($media-breakpoint, 'mobile')}) and (max-width: #{map-get($media-breakpoint, 'tablet')}) {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            @media screen and (min-width: #{map-get($media-breakpoint, 'tablet')}) {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+
+            .card {
+                @include backgroundColor('light-gray');
+                border-radius: $border-radius;
+                overflow: hidden;
+
+                .card-image {
+                    position: relative;
+                    min-height: calculate-rem(230px);
+                    max-height: calculate-rem(240px);
+                    overflow: hidden;
+
+                    img {
+                        width: 100%;
+                    }
+                }
+
+                .card-title {
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 0 $main-pad;
+
+                    h3 {
+                    @include cardTitle();
+                    }
+
+                    p {
+                        @include highlightText();
+                        @include font-weight('semi-bold');
+                        @include color('primary-orange');
+                    }
+                }
+
+                .card-body {
+                    padding: 0 $main-pad;
+
+                    p {
+                        @include paragraphText();
+                    }
+                }
+
+                .card-footer {
+                    display: flex;
+                    align-items: center;
+                    padding: $main_pad * 2 $main-pad;
+                    gap: calculate-rem(25px);
+
+                    button {
+                        @include minimalistButton();
+                    }
+
+                    img.delivery-icon {
+                        width: calculate-rem(35px);
+
+                        &:hover {
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+

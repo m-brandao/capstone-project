@@ -1,7 +1,10 @@
 @use 'sass:map';
 @import './variables.scss';
 
+
 // mixins - General Styles
+
+/* -  Typography  - */
 @mixin navbarItem() {
     @include font-family('base');
     @include font-size('highlight-text');
@@ -18,6 +21,8 @@
     @include font-family('title');
     @include font-size('sub-title');
     @include font-weight('regular');
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 @mixin leadText() {
@@ -49,12 +54,54 @@
     @include font-size('paragraph-text');
     @include font-weight('regular');
     @include line-height('paragraph-line');
+    max-width: 65ch;
 }
 
-@mixin highlight-text() {
+@mixin highlightText() {
     @include font-family('text');
     @include font-size('highlight-text');
     @include font-weight('medium');
+}
+
+
+/* - Componenets - */
+@mixin buttonDefault() {
+    @include backgroundColor('light-gray');
+    @include color('primary-green');
+    @include border-radius();
+    max-height: calculate-rem(50px);
+    padding: $main-pad;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+        @include backgroundColor('darker-gray');
+        cursor: pointer;
+    }
+}
+
+@mixin primaryButton() {
+    @include buttonDefault();
+    @include backgroundColor('primary-yellow');
+    @include color('primary-green');
+    @include font-weight('bold');
+
+    &:hover {
+        @include backgroundColor('darker-yellow');
+        cursor: pointer;
+    }
+}
+
+@mixin minimalistButton() {
+    @include font-size('highlight-text');
+    @include font-family('text');
+    @include font-weight('semi-bold');
+    border: none;
+    background-color: transparent;
+
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 

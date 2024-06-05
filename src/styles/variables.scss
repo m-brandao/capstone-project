@@ -1,5 +1,6 @@
 @import './functions.scss';
 
+
 // Typeface vars
 $font-families: (
     'base': 'Markazi-Text, Karla, Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif',
@@ -14,10 +15,10 @@ $font-families: (
 $font-sizes: (
     'title': calculate-rem(64pt),
     'sub-title': calculate-rem(40pt),
-    'lead-text': calculate-rem(18pt),
     'section-title': calculate-rem(20pt),
-    'section-category': calculate-rem(16pt),
+    'lead-text': calculate-rem(18pt),
     'card-title': calculate-rem(18pt),
+    'section-category': calculate-rem(16pt),
     'paragraph-text': calculate-rem(16pt),
     'highlight-text': calculate-rem(16pt)
 );
@@ -25,6 +26,7 @@ $font-sizes: (
 $font-weights: (
     'regular': 400,
     'medium': 500,
+    'semi-bold': 600,
     'bold': 700,
     'extra-bold': 800
 );
@@ -36,11 +38,25 @@ $line-heights: (
 
 // Colors
 $colors: (
+    'darker-green': hsl(160, 13%, 23%),
     'primary-green': hsl(160, 13%, 33%),
+    'darker-yellow': hsl(50, 91%, 43%),
     'primary-yellow': hsl(50, 91%, 52%),
-    'dark-text-color': hsl(0, 0%, 0%)
+    'primary-orange': hsl(19, 78%, 69%),
+    'dark-text-color': hsl(0, 0%, 0%),
+    'darker-gray': hsl(150, 6%, 83%),
+    'light-gray': hsl(150, 6%, 93%),
+    'lighter-gray': hsl(150, 6%, 97%),
 );
 
 // Measurements
 $border-radius: calculate-rem(16px);
 $main-pad: calculate-rem(10px);
+
+// Media Queries
+$media-breakpoint: (
+    'mobile': calculate-rem(480px),
+    'tablet': calculate-rem(768px),
+    'laptop': calculate-rem(1024px),
+    'desktop': calculate-rem(1200px)
+);
