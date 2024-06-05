@@ -1,0 +1,88 @@
+@use 'sass:map';
+@import './variables.scss';
+
+// mixins - General Styles
+@mixin navbarItem() {
+    @include font-family('base');
+    @include font-size('highlight-text');
+    @include font-weight('medium');
+}
+
+@mixin title() {
+    @include font-family('title');
+    @include font-size('title');
+    @include font-weight('medium');
+}
+
+@mixin subTitle() {
+    @include font-family('title');
+    @include font-size('sub-title');
+    @include font-weight('regular');
+}
+
+@mixin leadText() {
+    @include font-family('text');
+    @include font-size('lead-text');
+    @include font-weight('medium');
+}
+
+@mixin sectionTitle() {
+    @include font-family('text');
+    @include font-size('section-title');
+    @include font-weight('extra-bold');
+}
+
+@mixin sectionCategory() {
+    @include font-family('text');
+    @include font-size('section-category');
+    @include font-weight('extra-bold');
+}
+
+@mixin cardTitle() {
+    @include font-family('text');
+    @include font-size('card-title');
+    @include font-weight('bold');
+}
+
+@mixin paragraphText() {
+    @include font-family('text');
+    @include font-size('paragraph-text');
+    @include font-weight('regular');
+    @include line-height('paragraph-line');
+}
+
+@mixin highlight-text() {
+    @include font-family('text');
+    @include font-size('highlight-text');
+    @include font-weight('medium');
+}
+
+
+// mixins - GETS
+@mixin font-family($type) {
+    font-family: map-get($font-families, $type);
+}
+
+@mixin font-size($size) {
+    font-size: map-get($font-sizes, $size);
+}
+
+@mixin font-weight($weight) {
+    font-weight: map-get($font-weights, $weight);
+}
+
+@mixin line-height($line) {
+    line-height: map-get($line-heights, $line);
+}
+
+@mixin color($color) {
+    color: map-get($colors, $color);
+}
+
+@mixin backgroundColor($color) {
+    background-color: map-get($colors, $color);
+}
+
+@mixin border-radius() {
+    border-radius: $border-radius;
+}

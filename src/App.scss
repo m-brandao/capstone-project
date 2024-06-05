@@ -1,0 +1,37 @@
+@import './styles/variables.scss';
+@import './styles/mixins.scss';
+
+nav {
+    ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        list-style: none;
+
+        li {
+            padding: $main-pad * 1.5;
+
+            &:hover:not(.logo) {
+                @include backgroundColor('primary-green');
+                @include border-radius();
+
+                a {
+                    color: white;
+                }
+            }
+
+            a{
+                @include navbarItem();
+                @include color('dark-text-color');
+                text-transform: uppercase;
+                text-decoration: none;
+
+                img {
+                    min-width: 100px;
+                    max-width: 200px;
+                }
+            }
+        }
+    }
+}
