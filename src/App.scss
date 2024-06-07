@@ -72,7 +72,7 @@ header {
     max-width: calculate-rem(500px);
     min-width: calculate-rem(499px);
     max-height: calculate-rem(400px);
-    min-height: calculate-rem(400px);
+    min-height: calculate-rem(430px);
 
     @include max-width-querie("mobile") {
       min-width: calculate-rem(315px);
