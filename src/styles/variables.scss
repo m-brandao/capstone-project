@@ -54,9 +54,10 @@ $border-radius: calculate-rem(16px);
 $main-pad: calculate-rem(10px);
 
 // Media Queries
-$media-breakpoint: (
+$media-breakpoints: (
     'mobile': calculate-rem(480px),
     'tablet': calculate-rem(768px),
     'laptop': calculate-rem(1024px),
-    'desktop': calculate-rem(1200px)
+    'desktop': calculate-rem(1200px),
+    'bigger': calculate-rem(2000px),
 );

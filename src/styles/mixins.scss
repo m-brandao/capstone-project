@@ -1,135 +1,143 @@
-@use 'sass:map';
-@import './variables.scss';
-
+@use "sass:map";
+@import "./variables.scss";
 
 // mixins - General Styles
 
 /* -  Typography  - */
 @mixin navbarItem() {
-    @include font-family('base');
-    @include font-size('highlight-text');
-    @include font-weight('medium');
+  @include font-family("base");
+  @include font-size("highlight-text");
+  @include font-weight("medium");
 }
 
 @mixin title() {
-    @include font-family('title');
-    @include font-size('title');
-    @include font-weight('medium');
+  @include font-family("title");
+  @include font-size("title");
+  @include font-weight("medium");
 }
 
 @mixin subTitle() {
-    @include font-family('title');
-    @include font-size('sub-title');
-    @include font-weight('regular');
-    margin-top: 0;
-    margin-bottom: 0;
+  @include font-family("title");
+  @include font-size("sub-title");
+  @include font-weight("regular");
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 @mixin leadText() {
-    @include font-family('text');
-    @include font-size('lead-text');
-    @include font-weight('medium');
+  @include font-family("text");
+  @include font-size("lead-text");
+  @include font-weight("medium");
 }
 
 @mixin sectionTitle() {
-    @include font-family('text');
-    @include font-size('section-title');
-    @include font-weight('extra-bold');
+  @include font-family("text");
+  @include font-size("section-title");
+  @include font-weight("extra-bold");
 }
 
 @mixin sectionCategory() {
-    @include font-family('text');
-    @include font-size('section-category');
-    @include font-weight('extra-bold');
+  @include font-family("text");
+  @include font-size("section-category");
+  @include font-weight("extra-bold");
 }
 
 @mixin cardTitle() {
-    @include font-family('text');
-    @include font-size('card-title');
-    @include font-weight('bold');
+  @include font-family("text");
+  @include font-size("card-title");
+  @include font-weight("bold");
 }
 
 @mixin paragraphText() {
-    @include font-family('text');
-    @include font-size('paragraph-text');
-    @include font-weight('regular');
-    @include line-height('paragraph-line');
-    max-width: 65ch;
+  @include font-family("text");
+  @include font-size("paragraph-text");
+  @include font-weight("regular");
+  @include line-height("paragraph-line");
+  max-width: 65ch;
 }
 
 @mixin highlightText() {
-    @include font-family('text');
-    @include font-size('highlight-text');
-    @include font-weight('medium');
+  @include font-family("text");
+  @include font-size("highlight-text");
+  @include font-weight("medium");
 }
-
 
 /* - Componenets - */
 @mixin buttonDefault() {
-    @include backgroundColor('light-gray');
-    @include color('primary-green');
-    @include border-radius();
-    max-height: calculate-rem(50px);
-    padding: $main-pad;
-    border: none;
-    cursor: pointer;
+  @include backgroundColor("light-gray");
+  @include color("primary-green");
+  @include border-radius();
+  max-height: calculate-rem(50px);
+  padding: $main-pad;
+  border: none;
+  cursor: pointer;
 
-    &:hover {
-        @include backgroundColor('darker-gray');
-        cursor: pointer;
-    }
+  &:hover {
+    @include backgroundColor("darker-gray");
+    cursor: pointer;
+  }
 }
 
 @mixin primaryButton() {
-    @include buttonDefault();
-    @include backgroundColor('primary-yellow');
-    @include color('primary-green');
-    @include font-weight('bold');
+  @include buttonDefault();
+  @include backgroundColor("primary-yellow");
+  @include color("primary-green");
+  @include font-weight("bold");
 
-    &:hover {
-        @include backgroundColor('darker-yellow');
-        cursor: pointer;
-    }
+  &:hover {
+    @include backgroundColor("darker-yellow");
+    cursor: pointer;
+  }
 }
 
 @mixin minimalistButton() {
-    @include font-size('highlight-text');
-    @include font-family('text');
-    @include font-weight('semi-bold');
-    border: none;
-    background-color: transparent;
+  @include font-size("highlight-text");
+  @include font-family("text");
+  @include font-weight("semi-bold");
+  border: none;
+  background-color: transparent;
 
-    &:hover {
-        cursor: pointer;
-    }
+  &:hover {
+    cursor: pointer;
+  }
 }
-
 
 // mixins - GETS
 @mixin font-family($type) {
-    font-family: map-get($font-families, $type);
+  font-family: map-get($font-families, $type);
 }
 
 @mixin font-size($size) {
-    font-size: map-get($font-sizes, $size);
+  font-size: map-get($font-sizes, $size);
 }
 
 @mixin font-weight($weight) {
-    font-weight: map-get($font-weights, $weight);
+  font-weight: map-get($font-weights, $weight);
 }
 
 @mixin line-height($line) {
-    line-height: map-get($line-heights, $line);
+  line-height: map-get($line-heights, $line);
 }
 
 @mixin color($color) {
-    color: map-get($colors, $color);
+  color: map-get($colors, $color);
 }
 
 @mixin backgroundColor($color) {
-    background-color: map-get($colors, $color);
+  background-color: map-get($colors, $color);
 }
 
 @mixin border-radius() {
-    border-radius: $border-radius;
+  border-radius: $border-radius;
+}
+
+// Mixin for minimum width queries
+@mixin min-width-querie($breakpoint) {
+  @if map-has-key($media-breakpoints, $breakpoint) {
+    @media screen and (min-width: map-get($media-breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint '#{$breakpoint}' not found in $breakpoints map.";
+  }
 }

@@ -1,208 +1,360 @@
-@use 'sass:map';
-@import './styles/variables.scss';
-@import './styles/mixins.scss';
-@import './styles/functions.scss';
-
+@use "sass:map";
+@import "./styles/variables.scss";
+@import "./styles/mixins.scss";
+@import "./styles/functions.scss";
 
 .App {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
-
 nav {
-    ul {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 15px;
-        list-style: none;
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    list-style: none;
 
-        li {
-            padding: $main-pad * 1.5;
+    li {
+      padding: $main-pad * 1.5;
 
-            &:hover:not(.logo) {
-                @include backgroundColor('primary-green');
-                @include border-radius();
+      &:hover:not(.logo) {
+        @include backgroundColor("primary-green");
+        @include border-radius();
 
-                a {
-                    color: white;
-                }
-            }
-
-            a{
-                @include navbarItem();
-                @include color('dark-text-color');
-                text-transform: uppercase;
-                text-decoration: none;
-
-                img {
-                    min-width: calculate-rem(100px);
-                    max-width: calculate-rem(200px);
-                }
-            }
+        a {
+          color: white;
         }
+      }
+
+      a {
+        @include navbarItem();
+        @include color("dark-text-color");
+        text-transform: uppercase;
+        text-decoration: none;
+
+        img {
+          min-width: calculate-rem(100px);
+          max-width: calculate-rem(200px);
+        }
+      }
     }
+  }
 }
 
 header {
-    display: flex;
-    flex-wrap: wrap;
-    background-color: map.get($colors, 'primary-green');
-    justify-content: center;
-    align-items: center;
-    padding: 0 calculate-rem(50px);
+  display: flex;
+  flex-wrap: wrap;
+  background-color: map.get($colors, "primary-green");
+  justify-content: center;
+  align-items: center;
+  padding: 0 calculate-rem(50px);
 
-    h1 {
-        @include title();
-        margin-bottom: 0;
-        color: map.get($colors, 'primary-yellow')
+  h1 {
+    @include title();
+    margin-bottom: 0;
+    color: map.get($colors, "primary-yellow");
+  }
+
+  h3 {
+    @include subTitle();
+    color: white;
+  }
+
+  p {
+    @include paragraphText();
+    max-width: 65ch;
+    color: white;
+  }
+
+  section {
+    max-width: calculate-rem(500px);
+    min-width: calculate-rem(499px);
+    max-height: calculate-rem(400px);
+    min-height: calculate-rem(400px);
+
+    div {
+      position: relative;
+      overflow: hidden;
+      margin-top: calculate-rem(30px);
+      height: calculate-rem(450px);
+      border-radius: $border-radius;
+
+      img {
+        position: absolute;
+        top: calculate-rem(-170px);
+        right: 0;
+        width: 100%;
+      }
     }
 
-    h3 {
-        @include subTitle();
-        color: white;
+    button {
+      @include primaryButton();
+      margin-bottom: calculate-rem(20px);
     }
-
-    p {
-        max-width: 65ch;
-        color: white;
-    }
-
-    section {
-        max-width: calculate-rem(500px);
-        min-width: calculate-rem(499px);
-        max-height: calculate-rem(400px);
-        min-height: calculate-rem(400px);
-
-        div {
-            position: relative;
-            overflow: hidden;
-            margin-top: calculate-rem(30px);
-            height: calculate-rem(450px);
-            border-radius: $border-radius;
-
-            img {
-                position: absolute;
-                top: calculate-rem(-170px);
-                right: 0;
-                width: 100%;
-            }
-        }
-
-        button {
-            @include primaryButton();
-            margin-bottom: calculate-rem(20px);
-        }
-    }
+  }
 }
 
 main {
-    margin-top: calculate-rem(150px);
+  margin-top: calculate-rem(150px);
 
-    #highlights-section {
-        padding: 0 10%;
+  #highlights-section {
+    padding: 0 10%;
+    scroll-behavior: smooth;
 
-        div.first-row{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: calculate-rem(30px);
+    div.first-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: calculate-rem(30px);
 
-            h2{
-                @include sectionTitle();
-            }
+      h2 {
+        @include sectionTitle();
+      }
 
-            button {
-                @include primaryButton();
-            }
-        }
-
-        .grid-card{
-            display: grid;
-            gap: calculate-rem(30px);
-
-            @media screen and (max-width: #{map-get($media-breakpoint, 'mobile')}) {
-                grid-template-columns: 1fr;
-            }
-
-            @media screen and (min-width: #{map-get($media-breakpoint, 'mobile')}) and (max-width: #{map-get($media-breakpoint, 'tablet')}) {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            @media screen and (min-width: #{map-get($media-breakpoint, 'tablet')}) {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-
-            .card {
-                @include backgroundColor('light-gray');
-                border-radius: $border-radius;
-                overflow: hidden;
-
-                .card-image {
-                    position: relative;
-                    min-height: calculate-rem(230px);
-                    max-height: calculate-rem(240px);
-                    overflow: hidden;
-
-                    img {
-                        width: 100%;
-                    }
-                }
-
-                .card-title {
-                    display: flex;
-                    justify-content: space-between;
-                    padding: 0 $main-pad;
-
-                    h3 {
-                    @include cardTitle();
-                    }
-
-                    p {
-                        @include highlightText();
-                        @include font-weight('semi-bold');
-                        @include color('primary-orange');
-                    }
-                }
-
-                .card-body {
-                    padding: 0 $main-pad;
-
-                    p {
-                        @include paragraphText();
-                    }
-                }
-
-                .card-footer {
-                    display: flex;
-                    align-items: center;
-                    padding: $main_pad * 2 $main-pad;
-                    gap: calculate-rem(25px);
-
-                    button {
-                        @include minimalistButton();
-                    }
-
-                    img.delivery-icon {
-                        width: calculate-rem(35px);
-
-                        &:hover {
-                            cursor: pointer;
-                        }
-                    }
-                }
-            }
-        }
+      button {
+        @include primaryButton();
+      }
     }
+
+    .grid-card {
+      margin-top: calculate-rem(20px);
+      display: grid;
+      gap: calculate-rem(30px);
+
+      @include min-width-querie("mobile") {
+        grid-template-columns: 1fr;
+      }
+
+      @include min-width-querie("tablet") {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @include min-width-querie("tablet") {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      @include min-width-querie("laptop") {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      @include min-width-querie("bigger") {
+        grid-template-columns: repeat(8, 1fr);
+      }
+
+      .card {
+        @include backgroundColor("light-gray");
+        border-radius: $border-radius;
+        overflow: hidden;
+
+        .card-image {
+          position: relative;
+          min-height: calculate-rem(230px);
+          max-height: calculate-rem(240px);
+          overflow: hidden;
+
+          img {
+            width: 100%;
+          }
+        }
+
+        .card-title {
+          display: flex;
+          justify-content: space-between;
+          padding: 0 $main-pad;
+
+          h3 {
+            @include cardTitle();
+          }
+
+          p {
+            @include highlightText();
+            @include font-weight("semi-bold");
+            @include color("primary-orange");
+          }
+        }
+
+        .card-body {
+          padding: 0 $main-pad;
+
+          p {
+            @include paragraphText();
+          }
+        }
+
+        .card-footer {
+          display: flex;
+          align-items: center;
+          padding: $main_pad * 2 $main-pad;
+          gap: calculate-rem(25px);
+
+          button {
+            @include minimalistButton();
+          }
+
+          img.delivery-icon {
+            width: calculate-rem(35px);
+
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #testimonials-section {
+    margin-top: calculate-rem(50px);
+    display: flex;
+    flex-direction: column;
+    padding: 0 10%;
+
+    .grid {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      gap: calculate-rem(20px);
+
+      article {
+        .rating {
+          @include highlightText();
+          @include font-weight("bold");
+        }
+
+        .two-column {
+          display: flex;
+          align-items: center;
+          gap: calculate-rem(15px);
+        }
+
+        hr {
+          width: calculate-rem(20px);
+          margin: calculate-rem(10px) 0;
+          color: map.get($colors, "primary-yellow");
+        }
+
+        img {
+          border-radius: 50%;
+          border: calculate-rem(3px) solid map.get($colors, "primary-green");
+          //   filter: drop-shadow(3px 3px 5px map.get($colors, "primary-green"));
+        }
+
+        h4 {
+          @include leadText();
+          margin: calculate-rem(10px) 0 0 0;
+        }
+
+        .feedback-text {
+          @include paragraphText();
+          font-size: calculate-rem(10pt);
+
+          &::before {
+            content: '"';
+            font-family: "Times New Roman", "Courier New", Courier, monospace;
+            @include font-weight("bold");
+            font-size: calculate-rem(20pt);
+          }
+        }
+      }
+    }
+  }
+
+  #about-section {
+    margin-top: calculate-rem(150px);
+    padding: 0 10%;
+    display: flex;
+    gap: calculate-rem(20px);
+
+    div {
+      display: flex;
+      flex-basis: 50%;
+
+      &:first-child {
+        flex-direction: column;
+      }
+
+      h2 {
+        @include title();
+        @include font-weight("bold");
+        @include color("primary-green");
+        margin: 0;
+      }
+
+      h3 {
+        @include subTitle();
+        @include color("primary-yellow");
+      }
+
+      p {
+        @include paragraphText();
+        max-width: 65ch;
+      }
+    }
+
+    .images-column {
+      position: relative;
+
+      div {
+        max-width: calculate-rem(500px);
+        height: auto;
+
+        &.absolute-parent {
+          position: absolute;
+          overflow: hidden;
+          right: calculate-rem(-50px);
+          top: calculate-rem(-50px);
+          width: calculate-rem(300px);
+          height: calculate-rem(350px);
+          border-left: 1px solid map.get($colors, "primary-yellow");
+          border-bottom: 1px solid map.get($colors, "primary-yellow");
+          filter: drop-shadow(-4px 4px 6px #000);
+        }
+      }
+      img {
+        max-width: calculate-rem(600px);
+        height: auto;
+
+        &.absolute {
+          position: absolute;
+          right: calculate-rem(-90px);
+        }
+      }
+    }
+  }
 }
 
 footer {
+  margin-top: calculate-rem(100px);
+  padding: $main-pad * 2.5 10%;
+  display: grid;
+  gap: calculate-rem(50px);
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid map.get($colors, "darker-green");
+  align-items: center;
+
+  div {
+    min-height: 100%;
+  }
+
+  img {
+    max-width: calculate-rem(300px);
+  }
+
+  nav {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+  }
+
+  .socials {
+    div {
+      display: flex;
+      gap: calculate-rem(10px);
+    }
+
+    img {
+      max-height: calculate-rem(20px);
+    }
+  }
 }
-
-
-
