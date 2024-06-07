@@ -13,7 +13,16 @@ export default function Footer() {
         <h3>Doormat Navigation</h3>
         <nav>
           <Link to={"/"}>Home</Link>
-          <Link to={"/"}>About</Link>
+          <Link
+            to={"/#about-section"}
+            onClick={() =>
+              document
+                .getElementById("about-section")
+                .scrollIntoView({ behavior: "smooth" })
+            }
+          >
+            About
+          </Link>
           <Link
             to={"/#highlights-section"}
             onClick={() =>

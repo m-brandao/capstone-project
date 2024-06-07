@@ -74,12 +74,22 @@ header {
     max-height: calculate-rem(400px);
     min-height: calculate-rem(400px);
 
+    @include max-width-querie("mobile") {
+      min-width: calculate-rem(315px);
+      min-height: calculate-rem(555px);
+    }
+
     div {
       position: relative;
       overflow: hidden;
       margin-top: calculate-rem(30px);
       height: calculate-rem(450px);
       border-radius: $border-radius;
+
+      @include max-width-querie("mobile") {
+        margin-top: calculate-rem(40px);
+        height: calculate-rem(300px);
+      }
 
       img {
         position: absolute;
@@ -129,10 +139,6 @@ main {
 
       @include min-width-querie("tablet") {
         grid-template-columns: repeat(2, 1fr);
-      }
-
-      @include min-width-querie("tablet") {
-        grid-template-columns: repeat(3, 1fr);
       }
 
       @include min-width-querie("laptop") {
@@ -217,7 +223,18 @@ main {
       width: 100%;
       gap: calculate-rem(20px);
 
+      @include max-width-querie("mobile") {
+        flex-direction: column;
+      }
+
       article {
+        &:not(:last-of-type) {
+          @include max-width-querie("mobile") {
+            padding-bottom: $main-pad * 2.5;
+            border-bottom: 1px solid map.get($colors, "dark-gray");
+          }
+        }
+
         .rating {
           @include highlightText();
           @include font-weight("bold");
@@ -267,6 +284,10 @@ main {
     display: flex;
     gap: calculate-rem(20px);
 
+    @include max-width-querie("laptop") {
+      flex-direction: column;
+    }
+
     div {
       display: flex;
       flex-basis: 50%;
@@ -296,9 +317,21 @@ main {
     .images-column {
       position: relative;
 
+      @include max-width-querie("mobile") {
+        min-height: calculate-rem(400px);
+      }
+
+      @include max-width-querie("laptop") {
+        margin-top: calculate-rem(50px);
+      }
+
       div {
         max-width: calculate-rem(500px);
         height: auto;
+
+        @include max-width-querie("mobile") {
+          max-width: calculate-rem(350px);
+        }
 
         &.absolute-parent {
           position: absolute;
@@ -310,6 +343,13 @@ main {
           border-left: 1px solid map.get($colors, "primary-yellow");
           border-bottom: 1px solid map.get($colors, "primary-yellow");
           filter: drop-shadow(-4px 4px 6px #000);
+
+          @include max-width-querie("mobile") {
+            width: calculate-rem(290px);
+            height: calculate-rem(190px);
+            top: calculate-rem(210px);
+            right: calculate-rem(-26px);
+          }
         }
       }
       img {
@@ -319,6 +359,11 @@ main {
         &.absolute {
           position: absolute;
           right: calculate-rem(-90px);
+
+          @include max-width-querie("mobile") {
+            right: calculate-rem(-45px);
+            top: calculate-rem(-25px);
+          }
         }
       }
     }
@@ -334,12 +379,21 @@ footer {
   border-top: 1px solid map.get($colors, "darker-green");
   align-items: center;
 
+  @include max-width-querie("laptop") {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   div {
     min-height: 100%;
   }
 
   img {
     max-width: calculate-rem(300px);
+
+    @include max-width-querie("laptop") {
+      margin: 0 auto;
+      grid-column: 1 / span 3;
+    }
   }
 
   nav {

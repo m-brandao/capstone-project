@@ -141,3 +141,14 @@
     @warn "Breakpoint '#{$breakpoint}' not found in $breakpoints map.";
   }
 }
+
+// Mixin for maximum width queries
+@mixin max-width-querie($breakpoint) {
+  @if map-has-key($media-breakpoints, $breakpoint) {
+    @media screen and (max-width: map-get($media-breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint '#{$breakpoint}' not found in $breakpoints map.";
+  }
+}
