@@ -1,0 +1,226 @@
+@use "sass:map";
+@import "./variables.scss";
+@import "./mixins.scss";
+@import "./functions.scss";
+
+#reservation {
+  font-family: Karla;
+  #reservation-card {
+    position: absolute;
+    right: 10%;
+    top: calculate-rem(-70px);
+    @include backgroundColor("white");
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+      rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    border-radius: $main-pad;
+    min-width: calculate-rem(390px);
+
+    .reservation-head {
+      padding: $main-pad;
+      @include backgroundColor("lightest-gray");
+      border-bottom: 1px solid map.get($colors, "darker-gray");
+      border-top-left-radius: $main-pad;
+      border-top-right-radius: $main-pad;
+    }
+
+    .reservation-body {
+      padding: calculate-rem(20px) !important;
+
+      h3 {
+        @include sectionTitle();
+      }
+      p {
+        @include highlightText();
+      }
+      #reservation-steps {
+        display: flex;
+        justify-content: space-between;
+        @include backgroundColor("white");
+        // border: 1px solid map.get($colors, "primary-green");
+        border-radius: $border-radius;
+        margin-bottom: calculate-rem(20px);
+
+        hr {
+          width: calculate-rem(0.1px);
+        }
+
+        div {
+          flex: 1 0 25%;
+          display: flex;
+          justify-content: center;
+          border-right: 1px solid map.get($colors, "light-gray");
+          border-top-left-radius: $border-radius;
+          border-bottom-left-radius: $border-radius;
+          padding: $main-pad;
+
+          transition: all 0.5s ease-in-out;
+
+          &:last-of-type {
+            border: none;
+          }
+
+          &.active {
+            border-top: 1px solid map.get($colors, "primary-green");
+            border-bottom: 1px solid map.get($colors, "primary-green");
+            border-left: 1px solid map.get($colors, "primary-green");
+
+            svg {
+              path {
+                fill: map.get($colors, "primary-green");
+              }
+            }
+
+            &-middle {
+              border-radius: 0;
+              border-top: 1px solid map.get($colors, "primary-green");
+              border-bottom: 1px solid map.get($colors, "primary-green");
+
+              svg {
+                path {
+                  fill: map.get($colors, "primary-green");
+                }
+              }
+            }
+
+            &-end {
+              border-top-left-radius: 0;
+              border-top-right-radius: $border-radius;
+              border-bottom-right-radius: $border-radius;
+              border-bottom-left-radius: 0;
+              border-top: 1px solid map.get($colors, "primary-green");
+              border-right: 1px solid map.get($colors, "primary-green");
+              border-bottom: 1px solid map.get($colors, "primary-green");
+
+              svg {
+                path {
+                  fill: map.get($colors, "primary-green");
+                }
+              }
+            }
+          }
+
+          &.done {
+            &-start {
+              border-top: 1px solid map.get($colors, "primary-green");
+              border-left: 1px solid map.get($colors, "primary-green");
+              border-bottom: 1px solid map.get($colors, "primary-green");
+              @include backgroundColor("primary-green");
+
+              svg {
+                cursor: pointer;
+                path {
+                  fill: map.get($colors, "white");
+                }
+              }
+            }
+            &-middle {
+              border-radius: 0;
+              border-top: 1px solid map.get($colors, "primary-green");
+              border-bottom: 1px solid map.get($colors, "primary-green");
+              @include backgroundColor("primary-green");
+
+              svg {
+                cursor: pointer;
+                path {
+                  fill: map.get($colors, "white");
+                }
+              }
+            }
+            &-end {
+              border-top-left-radius: 0;
+              border-top-right-radius: $border-radius;
+              border-bottom-right-radius: $border-radius;
+              border-bottom-left-radius: 0;
+              @include backgroundColor("primary-green");
+
+              svg {
+                cursor: pointer;
+                path {
+                  fill: map.get($colors, "white");
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .react-calendar {
+        font-family: Karla;
+        transition: all 0.5ms ease-in-out;
+
+        .react-calendar__viewContainer {
+          padding: 10px;
+
+          .react-calendar__month-view__days {
+            .react-calendar__tile {
+              border-radius: $border-radius;
+
+              abbr {
+                border-bottom: 1px solid map.get($colors, "primary-yellow");
+              }
+              &.react-calendar__month-view__days__day--weekend {
+                color: black;
+              }
+              &--active {
+                @include backgroundColor("primary-green");
+                @include color("white");
+
+                &.react-calendar__month-view__days__day--weekend {
+                  @include color("white");
+                }
+              }
+
+              &:disabled {
+                @include color("darker-gray");
+
+                abbr {
+                  border: none;
+                }
+              }
+            }
+          }
+          .react-calendar__month-view__weekdays__weekday {
+            abbr {
+              text-decoration: none;
+              @include color("gray");
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .react-hour {
+    h3 {
+      font-size: Karla;
+      @include paragraphText();
+    }
+    .hour-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: calculate-rem(10px);
+    }
+  }
+
+  .react-guest {
+    h3 {
+      font-size: Karla;
+      @include paragraphText();
+    }
+    .guest-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: calculate-rem(10px);
+    }
+  }
+
+  .react-confirm {
+    h3,
+    p {
+      font-family: Karla;
+    }
+    .btn-confirm {
+      @include primaryButton();
+    }
+  }
+}

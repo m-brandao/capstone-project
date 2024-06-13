@@ -1,0 +1,25 @@
+@use "sass:map";
+@import "./variables.scss";
+@import "./mixins.scss";
+@import "./functions.scss";
+
+button.selector {
+  font-family: Karla;
+  @include backgroundColor("white");
+  @include color("primary-green");
+  font-size: calculate-rem(13px);
+  border: 1px solid map.get($colors, "primary-green") !important;
+  padding: $main-pad;
+  border-radius: $border-radius;
+  min-width: calculate-rem(50px);
+
+  span {
+    width: calculate-rem(15px);
+    border-bottom: 1px solid map.get($colors, "primary-yellow");
+  }
+
+  &.active {
+    background-color: map.get($colors, "primary-green") !important;
+    @include color("white");
+  }
+}

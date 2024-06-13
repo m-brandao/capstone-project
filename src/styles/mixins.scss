@@ -62,7 +62,7 @@
   @include font-weight("medium");
 }
 
-/* - Componenets - */
+/* - Components - */
 @mixin buttonDefault() {
   @include backgroundColor("light-gray");
   @include color("primary-green");
@@ -83,6 +83,11 @@
   @include backgroundColor("primary-yellow");
   @include color("primary-green");
   @include font-weight("bold");
+
+  a {
+    @include color("primary-green");
+    text-decoration: none;
+  }
 
   &:hover {
     @include backgroundColor("darker-yellow");

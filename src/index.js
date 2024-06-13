@@ -1,22 +1,38 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { RouterProvider, createBrowserRouter } from "react-router-dom"
-import './index.scss';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import {
+  Route,
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from "react-router-dom";
+import "./index.scss";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import RootLayout from "./layouts/RootLayout";
+import Reservations from "./components/Reservations";
+import { Provider } from "react-redux";
+import store from "./store";
+import ConfirmedBooking from "./components/ConfirmedBooking";
 
+const router = createBrowserRouter(
+  createRoutesFromElements([
+    <Route path="/" element={<RootLayout />}>
+      <Route index element={<App />} />
+      <Route path="/#about-section" element={<App />} />
+      <Route path="/#highlights-section" element={<App />} />
+      <Route path="/reservations" element={<Reservations />} />
+      <Route path="/ConfirmedBooking" element={<ConfirmedBooking />} />
+    </Route>,
+  ])
+);
 
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <App />,
-    },
-]);
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
+    <Provider store={store}>
       <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
 

@@ -1,0 +1,173 @@
+@use "sass:map";
+@import "./variables.scss";
+@import "./mixins.scss";
+@import "./functions.scss";
+
+header#reservations-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: calculate-rem(30px) 0 calculate-rem(65px) 10%;
+
+  h1 {
+    @include title();
+    @include font-weight("medium");
+  }
+
+  h2 {
+    @include subTitle();
+    @include color("white");
+    @include font-weight("regular");
+  }
+}
+
+main#reservations-main {
+  padding: calc($main-pad * 2) 10%;
+  position: relative;
+
+  h3 {
+    @include sectionTitle();
+    font-family: Karla;
+  }
+
+  #horizontal-scroll {
+    .scroll-container {
+      .scroll-content {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-y: scroll;
+        gap: calculate-rem(10px);
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        &::-webkit-scrollbar {
+          display: none;
+        }
+        a {
+          font-family: Karla;
+          @include buttonDefault();
+          @include font-weight("bold");
+
+          &:active {
+            @include backgroundColor("primary-green");
+          }
+        }
+      }
+    }
+  }
+
+  button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    &.get-back {
+      svg {
+        width: calculate-rem(50px);
+        height: calculate-rem(50px);
+        transform: rotate(-90deg);
+
+        g.frame-children {
+          path.fills {
+            fill: map.get($colors, "primary-green") !important;
+
+            &:hover {
+              fill: map.get($colors, "darker-green") !important;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  dialog {
+    &[open=""] {
+      width: 50%;
+      height: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid map.get($colors, "primary-yellow");
+      .dialog-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: $main-pad;
+
+        .checkmark__circle {
+          stroke-dasharray: 166;
+          stroke-dashoffset: 166;
+          stroke-width: calculate-rem(50px);
+          stroke-miterlimit: 10;
+          stroke: map.get($colors, "primary-green");
+          fill: none;
+          animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+        .checkmark {
+          width: calculate-rem(150px);
+          height: calculate-rem(150px);
+          border-radius: 50%;
+          display: block;
+          stroke-width: 2;
+          stroke: #fff;
+          stroke-miterlimit: 10;
+          margin: 10% auto;
+          box-shadow: inset 0px 0px 0px map.get($colors, "primary-green");
+          animation: fill 0.4s ease-in-out 0.4s forwards,
+            scale 0.3s ease-in-out 0.9s both;
+        }
+
+        .checkmark__check {
+          transform-origin: 50% 50%;
+          stroke-dasharray: 48;
+          stroke-dashoffset: 48;
+          animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        }
+
+        p {
+          margin: calculate-rem(10px);
+          @include title();
+          font-family: Karla;
+        }
+        svg {
+          &.check-icon {
+            font-size: calculate-rem(150px);
+            @include color("primary-green");
+            animation: 3s linear fadeInScale;
+          }
+          &.close-modal {
+            position: absolute !important;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+          }
+        }
+      }
+
+      &::backdrop {
+        background: rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+}
+
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes scale {
+  0%,
+  100% {
+    transform: none;
+  }
+  50% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+@keyframes fill {
+  100% {
+    box-shadow: inset 0px 0px 0px 30px map.get($colors, "primary-green");
+  }
+}

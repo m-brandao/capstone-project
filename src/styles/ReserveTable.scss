@@ -1,0 +1,15 @@
+@use "sass:map";
+@import "./variables.scss";
+@import "./mixins.scss";
+@import "./functions.scss";
+
+#reservation {
+  h1 {
+    @include title();
+    font-family: Karla;
+  }
+
+  form {
+    font-family: Karla;
+  }
+}

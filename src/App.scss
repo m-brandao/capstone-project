@@ -9,6 +9,21 @@
 }
 
 nav {
+  &#navigation-top {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+
+    &.hidden {
+      transform: translateY(-100%); /* Hides the navbar */
+    }
+  }
+
   ul {
     display: flex;
     justify-content: center;
@@ -37,6 +52,10 @@ nav {
         img {
           min-width: calculate-rem(100px);
           max-width: calculate-rem(200px);
+        }
+
+        &.active {
+          @include color("primary-yellow");
         }
       }
     }
@@ -107,10 +126,8 @@ header {
 }
 
 main {
-  margin-top: calculate-rem(150px);
-
   #highlights-section {
-    padding: 0 10%;
+    padding: calculate-rem(100px) 10%;
     scroll-behavior: smooth;
 
     div.first-row {
@@ -212,7 +229,6 @@ main {
   }
 
   #testimonials-section {
-    margin-top: calculate-rem(50px);
     display: flex;
     flex-direction: column;
     padding: 0 10%;
@@ -399,6 +415,14 @@ footer {
   nav {
     display: flex;
     flex-direction: column;
+
+    a {
+      color: #000;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline map.get($colors, "primary-yellow");
+      }
+    }
   }
 
   .socials {

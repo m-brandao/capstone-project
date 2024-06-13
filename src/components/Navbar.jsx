@@ -1,9 +1,43 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import LLLogo from "../assets/images/LittleLemonLogo.png";
 
 export default function Navbar() {
+  const location = useLocation();
+  const [activeLink, setActiveLink] = useState("");
+  const [hidden, setHidden] = useState(false);
+
+  useEffect(() => {
+    const { pathname, hash } = location;
+    setActiveLink(`${pathname}${hash}`);
+  }, [location]);
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY) {
+        // Scrolling down
+        setHidden(true);
+      } else {
+        // Scrolling up
+        setHidden(false);
+      }
+      lastScrollY = window.scrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const getClassName = (path) => {
+    return activeLink === path ? "active" : "";
+  };
   return (
-    <nav>
+    <nav id="navigation-top" className={hidden ? "hidden" : ""}>
       <ul>
         <li className="logo">
           <Link to={"/"}>
@@ -11,11 +45,14 @@ export default function Navbar() {
           </Link>
         </li>
         <li>
-          <Link to={"/"}>Home</Link>
+          <Link to={"/"} className={getClassName("/")}>
+            Home
+          </Link>
         </li>
         <li>
           <Link
             to={"/#about-section"}
+            className={getClassName("/#about-section")}
             onClick={() =>
               document
                 .getElementById("about-section")
@@ -28,6 +65,7 @@ export default function Navbar() {
         <li>
           <Link
             to={"/#highlights-section"}
+            className={getClassName("/#highlights-section")}
             onClick={() =>
               document
                 .getElementById("highlights-section")
@@ -38,7 +76,9 @@ export default function Navbar() {
           </Link>
         </li>
         <li>
-          <a href="#">Reservations</a>
+          <Link to={"/reservations"} className={getClassName("/reservations")}>
+            Reservations
+          </Link>
         </li>
         <li>
           <a href="#">Order Online</a>

@@ -33,7 +33,7 @@ export default function Footer() {
           >
             Menu
           </Link>
-          <Link to={"/"}>Reservations</Link>
+          <Link to={"/reservations"}>Reservations</Link>
           <Link to={"/"}>Order Online</Link>
           <Link to={"/"}>Login</Link>
         </nav>
