@@ -6,14 +6,15 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import "./index.scss";
+import { ChakraProvider } from "@chakra-ui/react";
 import App from "./App";
+import { Provider } from "react-redux";
+import store from "./store";
 import reportWebVitals from "./reportWebVitals";
 import RootLayout from "./layouts/RootLayout";
 import Reservations from "./components/Reservations";
-import { Provider } from "react-redux";
-import store from "./store";
 import ConfirmedBooking from "./components/ConfirmedBooking";
+import "./index.scss";
 
 const router = createBrowserRouter(
   createRoutesFromElements([
@@ -31,7 +32,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <ChakraProvider>
+        <RouterProvider router={router} />
+      </ChakraProvider>
     </Provider>
   </React.StrictMode>
 );

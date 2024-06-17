@@ -59,9 +59,9 @@ main#reservations-main {
   }
 
   button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
+    // background-color: transparent;
+    // border: none;
+    // cursor: pointer;
     &.get-back {
       svg {
         width: calculate-rem(50px);

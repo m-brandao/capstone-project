@@ -21,6 +21,11 @@ export const fetchAPI = function (date) {
   }
   return result;
 };
-export const submitAPI = function (formData) {
-  return true;
+
+export const submitAPI = async (formData) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(true); // Resolve with true after 1000ms
+    }, 1000);
+  });
 };

@@ -6,60 +6,7 @@
 .App {
   display: flex;
   flex-direction: column;
-}
-
-nav {
-  &#navigation-top {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background-color: white;
-    border-bottom: 1px solid #ddd;
-    padding: 10px 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
-
-    &.hidden {
-      transform: translateY(-100%); /* Hides the navbar */
-    }
-  }
-
-  ul {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    list-style: none;
-
-    li {
-      padding: $main-pad * 1.5;
-
-      &:hover:not(.logo) {
-        @include backgroundColor("primary-green");
-        @include border-radius();
-
-        a {
-          color: white;
-        }
-      }
-
-      a {
-        @include navbarItem();
-        @include color("dark-text-color");
-        text-transform: uppercase;
-        text-decoration: none;
-
-        img {
-          min-width: calculate-rem(100px);
-          max-width: calculate-rem(200px);
-        }
-
-        &.active {
-          @include color("primary-yellow");
-        }
-      }
-    }
-  }
+  font-family: Karla;
 }
 
 header {
@@ -121,6 +68,7 @@ header {
     button {
       @include primaryButton();
       margin-bottom: calculate-rem(20px);
+      margin-top: calculate-rem(20px);
     }
   }
 }
@@ -185,7 +133,7 @@ main {
         .card-title {
           display: flex;
           justify-content: space-between;
-          padding: 0 $main-pad;
+          padding: $main-pad;
 
           h3 {
             @include cardTitle();
@@ -232,6 +180,11 @@ main {
     display: flex;
     flex-direction: column;
     padding: 0 10%;
+    font-family: Karla;
+
+    h2 {
+      @include sectionTitle();
+    }
 
     .grid {
       display: flex;
@@ -239,13 +192,17 @@ main {
       width: 100%;
       gap: calculate-rem(20px);
 
+      @include max-width-querie("tablet") {
+        flex-direction: column;
+      }
+
       @include max-width-querie("mobile") {
         flex-direction: column;
       }
 
       article {
         &:not(:last-of-type) {
-          @include max-width-querie("mobile") {
+          @include max-width-querie("tablet") {
             padding-bottom: $main-pad * 2.5;
             border-bottom: 1px solid map.get($colors, "dark-gray");
           }

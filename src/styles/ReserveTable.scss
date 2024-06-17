@@ -11,5 +11,29 @@
 
   form {
     font-family: Karla;
+
+    label {
+      span {
+        color: hsl(0, 100%, 50%);
+      }
+    }
+
+    p {
+      span {
+        color: hsl(0, 100%, 50%);
+      }
+    }
+
+    button {
+      &.chakra-button {
+        @include minimalistButton();
+        font-family: Karla;
+        @include font-weight("bold");
+        // border: calculate-rem(1px) solid map.get($colors, "primary-green") !important;
+        height: calculate-rem(48px);
+        @include backgroundColor("primary-green");
+        @include color("white");
+      }
+    }
   }
 }

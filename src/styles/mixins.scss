@@ -5,7 +5,7 @@
 
 /* -  Typography  - */
 @mixin navbarItem() {
-  @include font-family("base");
+  font-family: Karla;
   @include font-size("highlight-text");
   @include font-weight("medium");
 }
